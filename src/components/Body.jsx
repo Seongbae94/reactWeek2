@@ -22,15 +22,15 @@ export default function Body() {
 
   //todo 화살표 함수로변경
   // github에 코드 업로드하기(repo하나 만들어서)
-  function handleNameChange(e) {
+  const handleNameChange = (e) => {
     setTopic(e.target.value);
-  }
+  };
 
-  function handleDescChange(e) {
+  const handleDescChange = (e) => {
     setDesc(e.target.value);
-  }
+  };
 
-  function addCard() {
+  const addCard = () => {
     setCards((prev) => [
       ...prev,
       { topic: topic, desc: desc, id: nanoid(), done: false },
@@ -39,19 +39,19 @@ export default function Body() {
     setDesc("");
     // document.getElementById("name").value = "";
     // document.getElementById("desc").value = "";
-  }
+  };
 
-  function onClickToggleHandler(id) {
+  const onClickToggleHandler = (id) => {
     setCards((prev) =>
       prev.map((prev) =>
         prev.id === id ? { ...prev, done: !prev.done } : { ...prev }
       )
     );
-  }
+  };
 
-  function onClickDeleteHandler(id) {
+  const onClickDeleteHandler = (id) => {
     setCards((prev) => prev.filter((card) => card.id !== id));
-  }
+  };
 
   return (
     <div className="container">
@@ -97,7 +97,10 @@ export default function Body() {
           })}
         </div>
         <h1>done..! 🎉</h1>
-        <div style={{ display: "flex" }} className="cards-flex cards-gap">
+        <div
+          style={{ display: "flex" }}
+          className="cards-flex cards-gap flex-wrap"
+        >
           {cards.map((card) => {
             if (card.done === true && card.topic !== "" && card.desc !== "") {
               return (
