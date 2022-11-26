@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { nanoid } from "nanoid";
-import Card from "./Card";
+import CardSet from "./CardSet";
 
 export default function Body() {
   const [topic, setTopic] = useState("");
@@ -83,36 +83,21 @@ export default function Body() {
       <div className="body-padding">
         <h1>working...🔥</h1>
         <div className="flex flex-wrap cards-flex cards-gap">
-          {cards.map((card) => {
-            if (card.done === false && card.topic !== "" && card.desc !== "") {
-              return (
-                <Card
-                  key={card.id}
-                  info={card}
-                  toggle={onClickToggleHandler}
-                  del={onClickDeleteHandler}
-                />
-              );
-            }
-          })}
+          <CardSet
+            cards={cards}
+            toggle={onClickToggleHandler}
+            del={onClickDeleteHandler}
+            done={false}
+          />
         </div>
         <h1>done..! 🎉</h1>
-        <div
-          style={{ display: "flex" }}
-          className="cards-flex cards-gap flex-wrap"
-        >
-          {cards.map((card) => {
-            if (card.done === true && card.topic !== "" && card.desc !== "") {
-              return (
-                <Card
-                  key={card.id}
-                  info={card}
-                  toggle={onClickToggleHandler}
-                  del={onClickDeleteHandler}
-                />
-              );
-            }
-          })}
+        <div className="flex flex-wrap cards-flex cards-gap">
+          <CardSet
+            cards={cards}
+            toggle={onClickToggleHandler}
+            del={onClickDeleteHandler}
+            done={true}
+          />
         </div>
       </div>
     </div>
